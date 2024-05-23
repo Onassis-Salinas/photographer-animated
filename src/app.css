@@ -11,6 +11,23 @@ body,
     font-style: normal;
 }
 
-.active{
-    
+/* width */
+::-webkit-scrollbar {
+    height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 1px;
+    background: #fff;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
 }
