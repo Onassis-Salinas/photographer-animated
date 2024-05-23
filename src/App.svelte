@@ -2,10 +2,18 @@
     import gsap from "gsap";
     import Image from "./Image.svelte";
     import { onMount } from "svelte";
+    import Modal from "./Modal.svelte";
 
     let tween: any;
+    let title: HTMLElement;
+    let background: HTMLDivElement;
+
     onMount(() => {
+        gsap.from(title, { duration: 1.5, delay: 2, top: "50%", translateY: "-50%" });
+        gsap.to(background, { duration: 1.5, delay: 3.2, opacity: 0 });
+        gsap.to(background, { display: "none", delay: 4.7 });
         // tween = gsap.from("img", { rotateZ: "90deg", duration: 1, stagger: 0.1, ease: "ease", delay: 0.5 });
+        gsap.from("h1", {});
     });
 
     let selected = 0;
@@ -16,18 +24,19 @@
     }
 </script>
 
-<main class="bg-background text-foreground h-screen flex flex-col">
-    <section class="text-center py-5">
-        <h1 class="text-3xl">Photographer</h1>
-        <nav class=" flex gap-5 justify-center">
-            <button on:click={() => (selected = 0)}>People</button>
-            <button on:click={() => (selected = 1)}>Landing</button>
+<main class="bg-background text-foreground h-lvh flex flex-col ">
+    <div bind:this={background} class="fixed top-0 bottom-0 left-0 right-0 bg-background z-10"></div>
+    <section bind:this={title} class="text-center pt-5 pb-3 left-1/2 -translate-x-1/2 fixed top-0 z-20">
+        <h1 class="text-4xl sm:text-5xl font-extralight text-center z-30">PHOTOGRAPHER</h1>
+        <nav class="flex gap-3 sm:gap-5 mt-2 justify-center text-lg font-light">
+            <button on:click={() => (selected = 0)}>People</button>-
+            <button on:click={() => (selected = 1)}>Landscapes</button>-
             <button on:click={() => (selected = 2)}>Products</button>
         </nav>
     </section>
 
     {#if selected === 0}
-        <div class="flex gap-10 overflow-x-auto overflow-y-hidden flex-1 px-1 sm:px-5">
+        <div class="flex gap-3 overflow-x-auto overflow-y-hidden flex-1 px-1 sm:px-5 h-screen max-h-screen">
             <Image aspect={3 / 4} src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGVvcGxlfGVufDB8fDB8fHww" />
             <Image aspect={1 / 2} src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGVvcGxlfGVufDB8fDB8fHww" />
             <Image aspect={1 / 1} src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVvcGxlfGVufDB8fDB8fHwy" />
@@ -42,7 +51,7 @@
         </div>
     {/if}
     {#if selected === 1}
-        <div class="flex gap-10 overflow-x-auto overflow-y-hidden flex-1 px-1 sm:px-5">
+        <div class="flex gap-3 overflow-x-auto overflow-y-hidden flex-1 px-1 sm:px-5 h-screen max-h-screen">
             <Image aspect={2 / 3} src="https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGFpc2FqZXN8ZW58MHx8MHx8fDI%3D" />
             <Image aspect={1} src="https://images.unsplash.com/photo-1484402628941-0bb40fc029e7?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGFpc2FqZXN8ZW58MHx8MHx8fDI%3D" />
             <Image aspect={2 / 3} src="https://images.unsplash.com/photo-1537824598505-99ee03483384?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGFpc2FqZXN8ZW58MHx8MHx8fDI%3D" />
@@ -57,7 +66,7 @@
         </div>
     {/if}
     {#if selected === 2}
-        <div class="flex gap-10 overflow-x-auto overflow-y-hidden flex-1 px-1 sm:px-5">
+        <div class="flex gap-3 overflow-x-auto overflow-y-hidden flex-1 px-1 sm:px-5 h-screen max-h-screen">
             <Image aspect={2 / 3} src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8fDI%3D" />
             <Image aspect={2 / 3} src="https://images.unsplash.com/photo-1567721913486-6585f069b332?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZHVjdHN8ZW58MHx8MHx8fDI%3D" />
             <Image aspect={3 / 6} src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2R1Y3RzfGVufDB8fDB8fHwy" />
@@ -70,3 +79,4 @@
         </div>
     {/if}
 </main>
+<Modal />
